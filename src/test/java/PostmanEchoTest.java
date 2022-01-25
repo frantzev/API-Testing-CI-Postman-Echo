@@ -17,8 +17,9 @@ public class PostmanEchoTest {
                 .post("/post")
         // Проверки
                 .then()
-                .statusCode(200)
-                .body("data", equalTo("Тест"))
+          .statusCode(200)
+          // static import для JsonSchemaValidator.matchesJsonSchemaInClasspath
+          .body(matchesJsonSchemaInClasspath("accounts.schema.json"))
         ;
     }
 }
