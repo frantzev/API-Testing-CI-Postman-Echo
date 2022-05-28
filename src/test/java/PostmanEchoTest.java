@@ -5,21 +5,19 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class PostmanEchoTest {
     @Test
-    void shouldReturnDemoAccounts() {
-        // Given - When - Then
-        // Предусловия
+    void shouldReturnPostRequest() {
+        //Подход Given-When-Then
+        //Предусловия
         given()
                 .baseUri("https://postman-echo.com")
-                .contentType("text/plain; charset=UTF-8")
-                .body("Тест01") // отправляемые данные (заголовки и query можно выставлять аналогично)
-        // Выполняемые действия
+                .body("Hello world")
+                //Выполняемые действия
                 .when()
                 .post("/post")
-        // Проверки
+                //Проверки
                 .then()
-          .statusCode(200)
-          // static import для JsonSchemaValidator.matchesJsonSchemaInClasspath
-          .body(matchesJsonSchemaInClasspath("accounts.schema.json"))
-        ;
+                .statusCode(200)
+                .body("data", equalTo("Hello world"));
+
     }
 }
